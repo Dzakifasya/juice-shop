@@ -1,0 +1,12 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-DECOMPRESS-20254116:
+    - '*':
+        reason: >-
+          No patched version available; temporary accepted risk pending upstream
+          fix
+        expires: 2026-12-02T00:00:00.000Z
+        created: 2026-11-02T03:15:09.322Z
+patch: {}
