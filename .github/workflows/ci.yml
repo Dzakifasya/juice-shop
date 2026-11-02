@@ -63,20 +63,20 @@ jobs:
         node-version: [22, 24, 26]
     steps:
       - name: "Check out Git repository"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
       - name: "Use Node.js ${{ matrix.node-version }}"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 #v7.0.0
         with:
           node-version: ${{ matrix.node-version }}
       - name: "Install application"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         run: |
           npm install --global npm@${{ env.NPM_VERSION }}
           npm install
       - name: "Execute frontend unit tests"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 #v4.0.0
         with:
           shell: bash
@@ -84,13 +84,13 @@ jobs:
           max_attempts: 3
           command: npm run test:frontend:coverage
       - name: "Copy frontend unit test coverage data"
-        if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
+        if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
         run: |
           cp frontend/coverage/frontend/lcov.info frontend-lcov.info
           sed -i s/SF:/SF:frontend\\//g frontend-lcov.info
         shell: bash
       - name: "Upload frontend unit test coverage data"
-        if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
+        if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
         with:
           name: frontend-test-lcov
@@ -104,32 +104,32 @@ jobs:
         node-version: [22, 24, 26]
     steps:
       - name: "Check out Git repository"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
       - name: "Use Node.js ${{ matrix.node-version }}"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 #v7.0.0
         with:
           node-version: ${{ matrix.node-version }}
       - name: "Install application"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         run: |
           npm install --global npm@${{ env.NPM_VERSION }}
           npm install
       - name: "Execute server unit tests"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 #v4.0.0
         with:
           timeout_minutes: 10
           max_attempts: 3
           command: npm run test:server:coverage
       - name: "Copy server unit test coverage data"
-        if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
+        if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
         run: |
           cp coverage/server-tests/lcov.info server-lcov.info
         shell: bash
       - name: "Upload server unit test coverage data"
-        if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
+        if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
         with:
           name: server-test-lcov
@@ -143,20 +143,20 @@ jobs:
         node-version: [22, 24, 26]
     steps:
       - name: "Check out Git repository"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
       - name: "Use Node.js ${{ matrix.node-version }}"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 #v7.0.0
         with:
           node-version: ${{ matrix.node-version }}
       - name: "Install application"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         run: |
           npm install --global npm@${{ env.NPM_VERSION }}
           npm install
       - name: "Execute integration tests"
-        if: github.repository == 'juice-shop/juice-shop' || (github.repository != 'juice-shop/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
+        if: github.repository == 'Dzakifasya/juice-shop' || (github.repository != 'Dzakifasya/juice-shop' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24')
         uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 #v4.0.0
         env:
           NODE_ENV: test
@@ -166,10 +166,10 @@ jobs:
           max_attempts: 3
           command: npm run test:api:coverage
       - name: "Copy API test coverage data"
-        if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
+        if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
         run: cp coverage/api-tests/lcov.info api-lcov.info
       - name: "Upload API test coverage data"
-        if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
+        if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && matrix.os == 'ubuntu-latest' && matrix.node-version == '24'
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
         with:
           name: api-test-lcov
@@ -178,7 +178,7 @@ jobs:
   coverage-report:
     needs: [frontend-test, server-test, api-test]
     runs-on: ubuntu-latest
-    if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push'
+    if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push'
     steps:
       - name: "Check out Git repository"
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
@@ -326,7 +326,7 @@ jobs:
         run: docker compose -f docker-compose.test.yml up --exit-code-from sut
   docker:
     continue-on-error: true
-    if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
+    if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
     needs: [frontend-test, server-test, api-test, e2e-test, custom-config-test, docker-test]
     runs-on: ubuntu-latest
     steps:
@@ -365,7 +365,7 @@ jobs:
             CYCLONEDX_NPM_VERSION=${{ env.CYCLONEDX_NPM_VERSION }}
   heroku:
     continue-on-error: true
-    if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
+    if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master')
     needs: [frontend-test, server-test, api-test, e2e-test, custom-config-test]
     runs-on: ubuntu-latest
     steps:
@@ -391,7 +391,7 @@ jobs:
           branch: ${{ env.HEROKU_BRANCH }}
   notify-slack:
     continue-on-error: true
-    if: github.repository == 'juice-shop/juice-shop' && github.event_name == 'push' && (success() || failure())
+    if: github.repository == 'Dzakifasya/juice-shop' && github.event_name == 'push' && (success() || failure())
     needs:
       - docker
       - heroku
