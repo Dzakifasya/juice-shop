@@ -24,8 +24,8 @@ jobs:
         run: npm install
 
       - name: Run Snyk Security Scan
+        continue-on-error: true
         uses: snyk/actions/node@master
-	continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
